@@ -4,23 +4,66 @@ A simple utility to help manage your VS Code extensions by exporting a list of i
 
 ## Overview
 
-This project provides two main scripts:
+This project provides a script to manage your VS Code extensions:
 
-1. `export_extensions.sh` - Exports your currently installed VS Code extensions to a timestamped JSON file
-2. `remove_extensions.sh` - Provides an interactive way to remove extensions from a list
+`vscode-extensions-manager.sh` - A unified tool that handles both exporting and removing extensions with various options.
+
+### Legacy Scripts (Deprecated)
+
+These scripts are kept for backward compatibility but using the new unified script is recommended:
+
+- `export_extensions.sh` - Exports your currently installed VS Code extensions to a timestamped JSON file
+- `remove_extensions.sh` - Provides an interactive way to remove extensions from a list
 
 ## Files
 
-- **export_extensions.sh**: Exports all currently installed VS Code extensions to a JSON file with a timestamp. Also creates a copy called `to_be_removed.json` that you can edit to select extensions for removal. Checks for required dependencies before running.
-- **remove_extensions.sh**: Reads the `to_be_removed.json` file and prompts you to confirm removal for each extension. Verifies dependencies and provides interactive yes/no prompts.
-- **check_dependencies.sh**: Helper script that contains common dependency checks for jq and VS Code CLI.
-- **to_be_removed.json**: A list of extensions to be considered for removal.
-- **vscode-extensions-*.json**: Timestamped backups of your extension lists.
-- **README.md**: This documentation file with instructions and troubleshooting tips.
+- **vscode-extensions-manager.sh**: All-in-one script for exporting and removing extensions with command-line options
+- **check_dependencies.sh**: Helper script that contains common dependency checks for jq and VS Code CLI
+- **export_extensions.sh**: Legacy script for exporting extensions (deprecated)
+- **remove_extensions.sh**: Legacy script for removing extensions (deprecated)
+- **vscode-extensions-to-be-removed.json**: A list of extensions to be considered for removal
+- **vscode-extensions-*.json**: Timestamped backups of your extension lists
+- **README.md**: This documentation file with instructions and troubleshooting tips
 
 ## Usage
 
-### Exporting Extensions
+### Using the Unified Script
+
+The new script combines all functionality with options:
+
+```bash
+./vscode-extensions-manager.sh [options] [operation]
+```
+
+Operations:
+- `export`: Export all installed extensions to a JSON file
+- `remove`: Interactively remove extensions from the JSON file
+- `clean`: Export and then remove in one operation
+
+Options:
+- `-h, --help`: Show help message
+- `-f, --file FILE`: Use a specific file (default: vscode-extensions-to-be-removed.json)
+- `-y, --yes`: Answer yes to all prompts (dangerous!)
+- `-v, --verbose`: Show more detailed output
+
+Examples:
+```bash
+# Export extensions to a timestamped file
+./vscode-extensions-manager.sh export
+
+# Remove extensions interactively
+./vscode-extensions-manager.sh remove
+
+# Export and then remove in one step
+./vscode-extensions-manager.sh clean
+
+# Use a custom file
+./vscode-extensions-manager.sh --file my-extensions.json remove
+```
+
+### Legacy Usage
+
+#### Exporting Extensions (Legacy)
 
 ```bash
 ./export_extensions.sh
@@ -30,7 +73,7 @@ This will:
 1. Export all your installed extensions to a new timestamped JSON file (`vscode-extensions-YYYYMMDD-HHMMSS.json`)
 2. Create a copy named `vscode-extensions-to-be-removed.json` that you can edit
 
-### Removing Extensions
+#### Removing Extensions (Legacy)
 
 1. Edit `vscode-extensions-to-be-removed.json` to keep only the extensions you want to remove
 2. Run:
@@ -73,15 +116,15 @@ If jq is not installed on your system:
 2. Make the scripts executable:
 
 ```bash
-chmod +x export_extensions.sh remove_extensions.sh check_dependencies.sh
+chmod +x vscode-extensions-manager.sh export_extensions.sh remove_extensions.sh check_dependencies.sh
 ```
 
 ## Tips
 
 - Keep your latest extension exports as backups before major system changes
-- Edit the `to_be_removed.json` file to customize which extensions you want to remove
-- You can remove all extensions in the list by answering 'y' to all prompts
-- You can skip any extension by answering 'n' to its prompt
+- Edit the `vscode-extensions-to-be-removed.json` file to customize which extensions you want to remove
+- Use the `-y` flag with caution as it will remove extensions without prompting
+- You can skip any extension by answering 'n' to its prompt when not using `-y`
 
 ## Troubleshooting
 
@@ -112,3 +155,4 @@ Jean-Philippe Maquestiaux (maquejp)
 - **Interactive Prompts**: Confirms each extension removal to prevent accidental deletions
 - **Timestamped Backups**: Creates dated backups of your extension lists
 - **Detailed Error Messages**: Provides clear instructions when issues are encountered
+- **Command Line Options**: Flexible usage with various options for automation
