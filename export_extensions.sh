@@ -11,7 +11,7 @@ timestamp=$(date +%Y%m%d-%H%M%S)
 
 # Define filenames
 output_file="vscode-extensions-$timestamp.json"
-copy_file="to_be_removed.json"
+copy_file="vscode-extensions-to-be-removed.json"
 
 # Export extensions to JSON
 code --list-extensions | jq -R . | jq -s . > "$output_file"

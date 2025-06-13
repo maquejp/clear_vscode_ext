@@ -7,7 +7,7 @@ source "$(dirname "$0")/check_dependencies.sh"
 check_dependencies
 
 # File containing the list of extensions to remove
-file="to_be_removed.json"
+file="vscode-extensions-to-be-removed.json"
 
 # Check if the file exists
 if [[ ! -f "$file" ]]; then
