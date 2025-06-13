@@ -11,8 +11,22 @@ file="vscode-extensions-to-be-removed.json"
 
 # Check if the file exists
 if [[ ! -f "$file" ]]; then
-  echo "Error: $file not found."
-  exit 1
+  echo "Warning: $file not found."
+  echo "Running export_extensions.sh to create it..."
+  
+  # Get the directory of the current script
+  script_dir="$(dirname "$0")"
+  
+  # Run the export script
+  bash "$script_dir/export_extensions.sh"
+  
+  # Check if the file was created
+  if [[ ! -f "$file" ]]; then
+    echo "Error: Failed to create $file."
+    exit 1
+  fi
+  
+  echo "File $file created. Continuing with extension removal..."
 fi
 
 # Use jq to get each extension and process in a loop

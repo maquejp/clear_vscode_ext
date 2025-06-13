@@ -28,18 +28,19 @@ This project provides two main scripts:
 
 This will:
 1. Export all your installed extensions to a new timestamped JSON file (`vscode-extensions-YYYYMMDD-HHMMSS.json`)
-2. Create a copy named `to_be_removed.json` that you can edit
+2. Create a copy named `vscode-extensions-to-be-removed.json` that you can edit
 
 ### Removing Extensions
 
-1. Edit `to_be_removed.json` to keep only the extensions you want to remove
+1. Edit `vscode-extensions-to-be-removed.json` to keep only the extensions you want to remove
 2. Run:
 
 ```bash
 ./remove_extensions.sh
 ```
 
-3. You'll be prompted for each extension with a yes/no question before it's actually removed
+3. If the file `vscode-extensions-to-be-removed.json` doesn't exist, the script will automatically run `export_extensions.sh` to create it
+4. You'll be prompted for each extension with a yes/no question before it's actually removed
 
 ## Requirements
 
@@ -86,7 +87,6 @@ chmod +x export_extensions.sh remove_extensions.sh check_dependencies.sh
 
 - **"jq is not installed"**: The scripts will check for jq and notify you if it's missing. See the Requirements section for installation instructions.
 - **"VS Code CLI is not installed or not in PATH"**: Make sure VS Code is installed and the `code` command is available from your terminal. Follow the instructions in the "Setting up the VS Code CLI" section above.
-- **"to_be_removed.json not found"**: Make sure to run `export_extensions.sh` before running `remove_extensions.sh`.
 - **Permission denied errors**: If you encounter permission errors when running the scripts, make sure they are executable using `chmod +x *.sh`.
 - **Empty extension list**: If no extensions are listed, make sure VS Code is properly installed and the `code` command works in your terminal.
 
