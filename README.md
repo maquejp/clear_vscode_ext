@@ -95,7 +95,7 @@ MIT
 
 ## Author
 
-[Your Name]
+Jean-Philippe Maquestiaux (maquejp)
 
 ## Safety Features
 
