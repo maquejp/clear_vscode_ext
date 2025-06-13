@@ -11,10 +11,11 @@ This project provides two main scripts:
 
 ## Files
 
-- **export_extensions.sh**: Exports all currently installed VS Code extensions to a JSON file with a timestamp. Also creates a copy called `to_be_removed.json` that you can edit to select extensions for removal.
-- **remove_extensions.sh**: Reads the `to_be_removed.json` file and prompts you to confirm removal for each extension.
+- **export_extensions.sh**: Exports all currently installed VS Code extensions to a JSON file with a timestamp. Also creates a copy called `to_be_removed.json` that you can edit to select extensions for removal. Checks for required dependencies before running.
+- **remove_extensions.sh**: Reads the `to_be_removed.json` file and prompts you to confirm removal for each extension. Verifies dependencies and provides interactive yes/no prompts.
 - **to_be_removed.json**: A list of extensions to be considered for removal.
 - **vscode-extensions-*.json**: Timestamped backups of your extension lists.
+- **README.md**: This documentation file with instructions and troubleshooting tips.
 
 ## Usage
 
@@ -44,6 +45,17 @@ This will:
 - Visual Studio Code (`code` command must be in your PATH)
 - jq (JSON processor) - Required for parsing JSON data
 
+Both scripts automatically check for these dependencies and will display helpful error messages if they're missing.
+
+### Setting up the VS Code CLI
+
+To make the `code` command available in your terminal:
+
+1. Open VS Code
+2. Press `F1` or `Ctrl+Shift+P` to open the command palette
+3. Type "shell command" and select "Install 'code' command in PATH"
+4. Restart your terminal
+
 ### Installing jq
 
 If jq is not installed on your system:
@@ -72,8 +84,10 @@ chmod +x export_extensions.sh remove_extensions.sh
 ## Troubleshooting
 
 - **"jq is not installed"**: The scripts will check for jq and notify you if it's missing. See the Requirements section for installation instructions.
-- **"VS Code CLI is not installed or not in PATH"**: Make sure VS Code is installed and the `code` command is available from your terminal. You may need to run "Install 'code' command in PATH" from the VS Code command palette.
+- **"VS Code CLI is not installed or not in PATH"**: Make sure VS Code is installed and the `code` command is available from your terminal. Follow the instructions in the "Setting up the VS Code CLI" section above.
 - **"to_be_removed.json not found"**: Make sure to run `export_extensions.sh` before running `remove_extensions.sh`.
+- **Permission denied errors**: If you encounter permission errors when running the scripts, make sure they are executable using `chmod +x *.sh`.
+- **Empty extension list**: If no extensions are listed, make sure VS Code is properly installed and the `code` command works in your terminal.
 
 ## License
 
@@ -82,3 +96,10 @@ MIT
 ## Author
 
 [Your Name]
+
+## Safety Features
+
+- **Dependency Checks**: Automatically verifies jq and VS Code are properly installed
+- **Interactive Prompts**: Confirms each extension removal to prevent accidental deletions
+- **Timestamped Backups**: Creates dated backups of your extension lists
+- **Detailed Error Messages**: Provides clear instructions when issues are encountered

@@ -13,6 +13,7 @@ fi
 if ! command -v code &> /dev/null; then
   echo "Error: VS Code CLI is not installed or not in PATH."
   echo "Make sure VS Code is installed and the 'code' command is available."
+  echo "You may need to run 'Install ''code'' command in PATH' from the VS Code command palette."
   exit 1
 fi
 
