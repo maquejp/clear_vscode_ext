@@ -8,45 +8,35 @@ This project provides a script to manage your VS Code extensions:
 
 `vscode-extensions-manager.sh` - A unified tool that handles both exporting and removing extensions with various options.
 
-### Legacy Scripts (Deprecated)
-
-These scripts are kept for backward compatibility but using the new unified script is recommended:
-
-- `export_extensions.sh` - Exports your currently installed VS Code extensions to a timestamped JSON file
-- `remove_extensions.sh` - Provides an interactive way to remove extensions from a list
-
 ## Files
 
 - **vscode-extensions-manager.sh**: All-in-one script for exporting and removing extensions with command-line options
 - **check_dependencies.sh**: Helper script that contains common dependency checks for jq and VS Code CLI
-- **export_extensions.sh**: Legacy script for exporting extensions (deprecated)
-- **remove_extensions.sh**: Legacy script for removing extensions (deprecated)
 - **vscode-extensions-to-be-removed.json**: A list of extensions to be considered for removal
 - **vscode-extensions-*.json**: Timestamped backups of your extension lists
 - **README.md**: This documentation file with instructions and troubleshooting tips
 
 ## Usage
 
-### Using the Unified Script
-
-The new script combines all functionality with options:
-
 ```bash
 ./vscode-extensions-manager.sh [options] [operation]
 ```
 
-Operations:
+### Operations
+
 - `export`: Export all installed extensions to a JSON file
 - `remove`: Interactively remove extensions from the JSON file
 - `clean`: Export and then remove in one operation
 
-Options:
+### Options
+
 - `-h, --help`: Show help message
 - `-f, --file FILE`: Use a specific file (default: vscode-extensions-to-be-removed.json)
 - `-y, --yes`: Answer yes to all prompts (dangerous!)
 - `-v, --verbose`: Show more detailed output
 
-Examples:
+### Examples
+
 ```bash
 # Export extensions to a timestamped file
 ./vscode-extensions-manager.sh export
@@ -61,36 +51,12 @@ Examples:
 ./vscode-extensions-manager.sh --file my-extensions.json remove
 ```
 
-### Legacy Usage
-
-#### Exporting Extensions (Legacy)
-
-```bash
-./export_extensions.sh
-```
-
-This will:
-1. Export all your installed extensions to a new timestamped JSON file (`vscode-extensions-YYYYMMDD-HHMMSS.json`)
-2. Create a copy named `vscode-extensions-to-be-removed.json` that you can edit
-
-#### Removing Extensions (Legacy)
-
-1. Edit `vscode-extensions-to-be-removed.json` to keep only the extensions you want to remove
-2. Run:
-
-```bash
-./remove_extensions.sh
-```
-
-3. If the file `vscode-extensions-to-be-removed.json` doesn't exist, the script will automatically run `export_extensions.sh` to create it
-4. You'll be prompted for each extension with a yes/no question before it's actually removed
-
 ## Requirements
 
 - Visual Studio Code (`code` command must be in your PATH)
 - jq (JSON processor) - Required for parsing JSON data
 
-Both scripts automatically check for these dependencies and will display helpful error messages if they're missing.
+The script automatically checks for these dependencies and will display helpful error messages if they're missing.
 
 ### Setting up the VS Code CLI
 
@@ -116,7 +82,7 @@ If jq is not installed on your system:
 2. Make the scripts executable:
 
 ```bash
-chmod +x vscode-extensions-manager.sh export_extensions.sh remove_extensions.sh check_dependencies.sh
+chmod +x vscode-extensions-manager.sh check_dependencies.sh
 ```
 
 ## Tips
