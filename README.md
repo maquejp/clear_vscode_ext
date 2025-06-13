@@ -13,7 +13,6 @@ This project provides two main scripts:
 
 - **export_extensions.sh**: Exports all currently installed VS Code extensions to a JSON file with a timestamp. Also creates a copy called `to_be_removed.json` that you can edit to select extensions for removal. Checks for required dependencies before running.
 - **remove_extensions.sh**: Reads the `to_be_removed.json` file and prompts you to confirm removal for each extension. Verifies dependencies and provides interactive yes/no prompts.
-- **export_extensions.sh**: Exports all currently installed VS Code extensions to a JSON file with a timestamp. Also creates a copy called `to_be_removed.json` that you can edit to select extensions for removal.
 - **check_dependencies.sh**: Helper script that contains common dependency checks for jq and VS Code CLI.
 - **to_be_removed.json**: A list of extensions to be considered for removal.
 - **vscode-extensions-*.json**: Timestamped backups of your extension lists.
@@ -73,7 +72,7 @@ If jq is not installed on your system:
 2. Make the scripts executable:
 
 ```bash
-chmod +x export_extensions.sh remove_extensions.sh
+chmod +x export_extensions.sh remove_extensions.sh check_dependencies.sh
 ```
 
 ## Tips
