@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+  echo "Error: jq is not installed. Please install it first."
+  echo "Ubuntu/Debian: sudo apt-get install jq"
+  echo "Fedora: sudo dnf install jq"
+  echo "macOS: brew install jq"
+  exit 1
+fi
+
 # File containing the list of extensions to remove
 file="to_be_removed.json"
 

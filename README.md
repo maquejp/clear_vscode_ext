@@ -42,7 +42,16 @@ This will:
 ## Requirements
 
 - Visual Studio Code (`code` command must be in your PATH)
-- jq (JSON processor)
+- jq (JSON processor) - Required for parsing JSON data
+
+### Installing jq
+
+If jq is not installed on your system:
+
+- **Ubuntu/Debian**: `sudo apt-get install jq`
+- **Fedora/RHEL**: `sudo dnf install jq`
+- **macOS**: `brew install jq`
+- **Windows**: Use Chocolatey: `choco install jq` or download from [stedolan.github.io/jq](https://stedolan.github.io/jq/)
 
 ## Installation
 
@@ -59,6 +68,12 @@ chmod +x export_extensions.sh remove_extensions.sh
 - Edit the `to_be_removed.json` file to customize which extensions you want to remove
 - You can remove all extensions in the list by answering 'y' to all prompts
 - You can skip any extension by answering 'n' to its prompt
+
+## Troubleshooting
+
+- **"jq is not installed"**: The scripts will check for jq and notify you if it's missing. See the Requirements section for installation instructions.
+- **"VS Code CLI is not installed or not in PATH"**: Make sure VS Code is installed and the `code` command is available from your terminal. You may need to run "Install 'code' command in PATH" from the VS Code command palette.
+- **"to_be_removed.json not found"**: Make sure to run `export_extensions.sh` before running `remove_extensions.sh`.
 
 ## License
 

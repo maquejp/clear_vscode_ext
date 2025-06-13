@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+  echo "Error: jq is not installed. Please install it first."
+  echo "Ubuntu/Debian: sudo apt-get install jq"
+  echo "Fedora: sudo dnf install jq"
+  echo "macOS: brew install jq"
+  exit 1
+fi
+
+# Check if VS Code CLI is available
+if ! command -v code &> /dev/null; then
+  echo "Error: VS Code CLI is not installed or not in PATH."
+  echo "Make sure VS Code is installed and the 'code' command is available."
+  exit 1
+fi
+
 # Generate timestamp
 timestamp=$(date +%Y%m%d-%H%M%S)
 
