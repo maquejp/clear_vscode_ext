@@ -90,9 +90,17 @@ chmod +x export_extensions.sh remove_extensions.sh check_dependencies.sh
 - **Permission denied errors**: If you encounter permission errors when running the scripts, make sure they are executable using `chmod +x *.sh`.
 - **Empty extension list**: If no extensions are listed, make sure VS Code is properly installed and the `code` command works in your terminal.
 
+## Contributing
+
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) for more information.
+
+## Code of Conduct
+
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) to understand the community expectations.
+
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
